@@ -25,8 +25,8 @@ try:
         print("Pulling latest changes from the remote repository...")
         result = origin.pull()
         print("Pull successful. Changes pulled:")
-        for info in result:
-            print(info.summary)
+        for fetch_info in result:
+            print(f"Ref: {fetch_info.ref} - New commit: {fetch_info.commit}")
 except GitCommandError as e:
     print(f"Failed to pull from the remote repository: {e}")
     print("Command output:")
