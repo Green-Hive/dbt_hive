@@ -13,7 +13,7 @@ DBT_MACROS_PATH = os.path.join(DBT_BASE_PATH,'macros')
 DBT_SOURCES_PATH = os.path.join(DBT_MODELS_PATH,'0_sources')   
 DBT_TARGETS_PATH = os.path.join(DBT_BASE_PATH,'target')   
 
-PATH_VENV = DBT_BASE_PATH = os.path.join(CURRENT_PATH,os.pardir,os.pardir,os.pardir,VENV)
+PATH_VENV = os.path.join(CURRENT_PATH,os.pardir,os.pardir,os.pardir,VENV)
 
 
 
