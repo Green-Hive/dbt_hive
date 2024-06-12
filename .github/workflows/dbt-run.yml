@@ -6,7 +6,8 @@ on:
   push:
     branches:
       - main # Runs on every push to the main branch
-
+  workflow_dispatch:
+    
 jobs:
   run-dbt:
     runs-on: ubuntu-latest
