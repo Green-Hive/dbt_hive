@@ -1,0 +1,43 @@
+name: Run dbt script
+
+on:
+  schedule:
+    - cron: '0 6 * * 1-5'
+  push:
+    branches:
+      - main # Runs on every push to the main branch
+
+jobs:
+  run-dbt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x' # Specify your Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install python-dotenv
+
+      - name: Run dbt script
+        env:
+          DBT_DEV_HOST: ${{ secrets.DBT_DEV_HOST }}
+          DBT_DEV_USER: ${{ secrets.DBT_DEV_USER }}
+          DBT_DEV_PASS: ${{ secrets.DBT_DEV_PASS }}
+          DBT_DEV_PORT: ${{ secrets.DBT_DEV_PORT }}
+          DBT_DEV_DBNAME: ${{ secrets.DBT_DEV_DBNAME }}
+          DBT_DEV_SCHEMA: ${{ secrets.DBT_DEV_SCHEMA }}
+          DBT_LOCAL_HOST: ${{ secrets.DBT_DEV_HOST }}
+          DBT_LOCAL_USER: ${{ secrets.DBT_DEV_USER }}
+          DBT_LOCAL_PASS: ${{ secrets.DBT_DEV_PASS }}
+          DBT_LOCAL_PORT: ${{ secrets.DBT_DEV_PORT }}
+          DBT_LOCAL_DBNAME: ${{ secrets.DBT_DEV_DBNAME }}
+          DBT_LOCAL_SCHEMA: ${{ secrets.DBT_LOCAL_SCHEMA }}
+        run: cd ./utils/ && python run_dbt.py

@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 import platform
 
-VENV = 'local'
 CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 DBT_PROJECT_NAME = 'dbt_hive'
@@ -13,12 +12,15 @@ DBT_MACROS_PATH = os.path.join(DBT_BASE_PATH,'macros')
 DBT_SOURCES_PATH = os.path.join(DBT_MODELS_PATH,'0_sources')   
 DBT_TARGETS_PATH = os.path.join(DBT_BASE_PATH,'target')   
 
-PATH_VENV = os.path.join(CURRENT_PATH,os.pardir,os.pardir,os.pardir,VENV)
 
 
 
 # Load environment variables from the .env file
 load_dotenv(os.path.join(DBT_BASE_PATH,'.env'), override=True)
+
+
+
+os.system("dbt run")
 
 # # Optionally, you can print the environment variables to verify
 # print("DBT_DB_HOST:", os.getenv("DBT_DB_HOST"))

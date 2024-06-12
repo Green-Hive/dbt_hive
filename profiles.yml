@@ -5,17 +5,17 @@ hive:
       host: "{{ env_var('DBT_DEV_HOST') }}"
       user: "{{ env_var('DBT_DEV_USER') }}"
       pass: "{{ env_var('DBT_DEV_PASS') }}"
-      port: "{{ env_var('DBT_DEV_PORT') }}"
+      port: "{{ env_var('DBT_DEV_PORT') | as_number }}"
       dbname: "{{ env_var('DBT_DEV_DBNAME') }}"
       schema: "{{ env_var('DBT_DEV_SCHEMA') }}"
       threads: 1
     local:
       type: postgres
-      host: "{{ env_var('DBT_LOCAL_HOST') }}"
-      user: "{{ env_var('DBT_LOCAL_USER') }}"
-      pass: "{{ env_var('DBT_LOCAL_PASS') }}"
-      port: "{{ env_var('DBT_LOCAL_PORT') }}"
-      dbname: "{{ env_var('DBT_LOCAL_DBNAME') }}"
+      host: "{{ env_var('DBT_DEV_HOST') }}"
+      user: "{{ env_var('DBT_DEV_USER') }}"
+      pass: "{{ env_var('DBT_DEV_PASS') }}"
+      port: "{{ env_var('DBT_DEV_PORT') | as_number }}"
+      dbname: "{{ env_var('DBT_DEV_DBNAME') }}"
       schema: "{{ env_var('DBT_LOCAL_SCHEMA') }}"
       threads: 1
   target: local
