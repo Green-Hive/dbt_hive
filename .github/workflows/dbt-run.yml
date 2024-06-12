@@ -27,18 +27,29 @@ jobs:
           pip install -r requirements.txt
           pip install python-dotenv
 
+          - name: Set environment variables
+          run: |
+            echo "DBT_DEV_HOST=${{ secrets.DBT_DEV_HOST }}" >> $GITHUB_ENV
+            echo "DBT_DEV_USER=${{ secrets.DBT_DEV_USER }}" >> $GITHUB_ENV
+            echo "DBT_DEV_PASS=${{ secrets.DBT_DEV_PASS }}" >> $GITHUB_ENV
+            echo "DBT_DEV_PORT=${{ secrets.DBT_DEV_PORT }}" >> $GITHUB_ENV
+            echo "DBT_DEV_DBNAME=${{ secrets.DBT_DEV_DBNAME }}" >> $GITHUB_ENV
+            echo "DBT_DEV_SCHEMA=${{ secrets.DBT_DEV_SCHEMA }}" >> $GITHUB_ENV
+            echo "DBT_LOCAL_HOST=${{ secrets.DBT_LOCAL_HOST }}" >> $GITHUB_ENV
+            echo "DBT_LOCAL_USER=${{ secrets.DBT_LOCAL_USER }}" >> $GITHUB_ENV
+            echo "DBT_LOCAL_PASS=${{ secrets.DBT_LOCAL_PASS }}" >> $GITHUB_ENV
+            echo "DBT_LOCAL_PORT=${{ secrets.DBT_LOCAL_PORT }}" >> $GITHUB_ENV
+            echo "DBT_LOCAL_DBNAME=${{ secrets.DBT_LOCAL_DBNAME }}" >> $GITHUB_ENV
+            echo "DBT_LOCAL_SCHEMA=${{ secrets.DBT_LOCAL_SCHEMA }}" >> $GITHUB_ENV
+      - name: Create .dbt directory and add profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cp profiles.yml ~/.dbt/profiles.yml
       - name: Run dbt script
-        env:
-          DBT_DEV_HOST: ${{ secrets.DBT_DEV_HOST }}
-          DBT_DEV_USER: ${{ secrets.DBT_DEV_USER }}
-          DBT_DEV_PASS: ${{ secrets.DBT_DEV_PASS }}
-          DBT_DEV_PORT: ${{ secrets.DBT_DEV_PORT }}
-          DBT_DEV_DBNAME: ${{ secrets.DBT_DEV_DBNAME }}
-          DBT_DEV_SCHEMA: ${{ secrets.DBT_DEV_SCHEMA }}
-          DBT_LOCAL_HOST: ${{ secrets.DBT_DEV_HOST }}
-          DBT_LOCAL_USER: ${{ secrets.DBT_DEV_USER }}
-          DBT_LOCAL_PASS: ${{ secrets.DBT_DEV_PASS }}
-          DBT_LOCAL_PORT: ${{ secrets.DBT_DEV_PORT }}
-          DBT_LOCAL_DBNAME: ${{ secrets.DBT_DEV_DBNAME }}
-          DBT_LOCAL_SCHEMA: ${{ secrets.DBT_LOCAL_SCHEMA }}
-        run: cd ./utils/ && python run_dbt.py
+        run: python utils/run_dbt.py
+        working-directory: .
+  
+      - name: Run dbt
+        run: dbt run --project-dir . --profiles-dir ~/.dbt
+        working-directory: .
+  
