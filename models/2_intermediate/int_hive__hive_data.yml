@@ -1,0 +1,22 @@
+version: 2
+models:
+- name: int_hive__hive_data
+  description: This table maps data about user and hives
+  columns:
+  - name: user_id
+    description: Id of the Hive
+  - name: email
+    description: Id of the Hive
+  - name: user_name
+    description: Id of the Hive
+  - name: created_at
+    description: Id of the Hive
+  - name: updated_at
+    description: Id of the Hive
+  - name: role
+    description: Id of the Hive
+  - name: hive_name
+    description: Id of the Hive
+  - name: user_has_access
+    description: Id of the Hive
+
