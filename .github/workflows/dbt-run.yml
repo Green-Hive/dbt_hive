@@ -45,7 +45,10 @@ jobs:
         run: |
           mkdir -p ~/.dbt
           cp profiles.yml ~/.dbt/profiles.yml
-
+          
+      - name: Install dbt packages
+        run: dbt deps
+        
       - name: Run dbt script
         run: python utils/run_dbt.py
         working-directory: .
