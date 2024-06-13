@@ -2,7 +2,7 @@
   
     
 
-  create  table "hive"."atlas_STAGING"."stg_hive__hive__dbt_tmp"
+  create  table "hive"."atlas_staging"."stg_hive__hive__dbt_tmp"
   
   
     as

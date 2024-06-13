@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_hive__session
+    description: ""
+    columns:
+      - name: sid
+        data_type: character varying
+        description: ""
+
+      - name: sess
+        data_type: text
+        description: ""
+
+      - name: expire
+        data_type: timestamp without time zone
+        description: ""

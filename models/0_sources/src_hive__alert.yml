@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: hive
+    schema: lake
+    database: hive
+    tables:
+      - name: alert
+        description: This table gathers all the data about alerts regarding hives

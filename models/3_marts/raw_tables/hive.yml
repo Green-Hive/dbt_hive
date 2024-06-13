@@ -1,18 +1,18 @@
 version: 2
 
 models:
-  - name: stg_hive__hive
+  - name: hive
     description: ""
     columns:
-      - name: id
+      - name: hive_id
         data_type: uuid
         description: ""
 
-      - name: createdat
+      - name: created_at
         data_type: timestamp without time zone
         description: ""
 
-      - name: updatedat
+      - name: updated_at
         data_type: timestamp without time zone
         description: ""
 
@@ -20,7 +20,7 @@ models:
         data_type: text
         description: ""
 
-      - name: userid
+      - name: user_id
         data_type: uuid
         description: ""
 
@@ -28,6 +28,6 @@ models:
         data_type: character varying
         description: ""
 
-      - name: userhasaccess
+      - name: user_has_access
         data_type: boolean
         description: ""

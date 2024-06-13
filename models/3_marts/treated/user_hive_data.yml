@@ -1,6 +1,6 @@
 version: 2
 models:
-- name: int_hive__hive_data
+- name: user_hive_data
   description: This table maps data about user and hives
   columns:
   - name: user_id

@@ -1,17 +1,18 @@
 version: 2
+
 models:
-  - name: stg_hive__hive_data
+  - name: hive_data
     description: ""
     columns:
       - name: id
         data_type: uuid
         description: ""
 
-      - name: createdat
+      - name: created_at
         data_type: timestamp without time zone
         description: ""
 
-      - name: hiveid
+      - name: hive_id
         data_type: uuid
         description: ""
 
@@ -19,15 +20,15 @@ models:
         data_type: double precision
         description: ""
 
-      - name: humiditybottomleft
+      - name: humidity_bottom_left
         data_type: double precision
         description: ""
 
-      - name: humidityoutside
+      - name: humidity_outside
         data_type: double precision
         description: ""
 
-      - name: humiditytopright
+      - name: humidity_top_right
         data_type: double precision
         description: ""
 
@@ -47,15 +48,15 @@ models:
         data_type: double precision
         description: ""
 
-      - name: tempbottomleft
+      - name: temp_bottom_left
         data_type: double precision
         description: ""
 
-      - name: tempoutside
+      - name: temp_outside
         data_type: double precision
         description: ""
 
-      - name: temptopright
+      - name: temp_top_right
         data_type: double precision
         description: ""
 

@@ -22,6 +22,7 @@ load_dotenv(os.path.join(DBT_BASE_PATH,'.env'), override=True)
 
 os.system("dbt run")
 
+
 # # Optionally, you can print the environment variables to verify
 # print("DBT_DB_HOST:", os.getenv("DBT_DB_HOST"))
 # print("DBT_DB_USER:", os.getenv("DBT_DB_USER"))

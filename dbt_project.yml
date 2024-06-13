@@ -13,10 +13,10 @@ models:
     +materialized: table
     1_staging:
       +materialized: table
-      +schema: STAGING
+      +schema: staging
     2_intermediate:
       +materialized: table
-      +schema: INTERMEDIARY
+      +schema: intermediary
     3_marts:
       +materialized: table
     

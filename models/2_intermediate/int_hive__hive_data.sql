@@ -8,8 +8,8 @@ WITH source_data AS (
         u.role,
         h.name as hive_name,
         h.userhasaccess as user_has_access
-    from lake.user u
-left join lake.hive h on u.id =  h.userid
+    from {{ ref('stg_hive__user') }} u
+left join {{ ref('stg_hive__hive') }} h on u.id =  h.userid
 
 
 )
