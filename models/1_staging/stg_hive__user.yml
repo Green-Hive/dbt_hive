@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_hive__user
+    description: ""
+    columns:
+      - name: id
+        data_type: uuid
+        description: ""
+
+      - name: email
+        data_type: character varying
+        description: ""
+
+      - name: name
+        data_type: character varying
+        description: ""
+
+      - name: password
+        data_type: character varying
+        description: ""
+
+      - name: provider
+        data_type: user-defined
+        description: ""
+
+      - name: createdat
+        data_type: timestamp without time zone
+        description: ""
+
+      - name: updatedat
+        data_type: timestamp without time zone
+        description: ""
+
+      - name: role
+        data_type: user-defined
+        description: ""
+
+      - name: notified
+        data_type: boolean
+        description: ""

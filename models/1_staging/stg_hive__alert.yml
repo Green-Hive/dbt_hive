@@ -1,0 +1,28 @@
+version: 2
+models:
+  - name: stg_hive__alert
+    description: ""
+    columns:
+      - name: id
+        data_type: uuid
+        description: ""
+
+      - name: createdat
+        data_type: timestamp with time zone
+        description: ""
+
+      - name: hiveid
+        data_type: uuid
+        description: ""
+
+      - name: message
+        data_type: text
+        description: ""
+
+      - name: type
+        data_type: user-defined
+        description: ""
+
+      - name: severity
+        data_type: user-defined
+        description: ""

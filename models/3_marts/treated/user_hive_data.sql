@@ -1,0 +1,1 @@
+select * from {{ ref('int_hive__hive_data') }}

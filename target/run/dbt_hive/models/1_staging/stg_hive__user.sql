@@ -2,7 +2,7 @@
   
     
 
-  create  table "hive"."atlas_staging"."stg_hive__hive_data__dbt_tmp"
+  create  table "hive"."atlas_staging"."stg_hive__user__dbt_tmp"
   
   
     as
@@ -12,7 +12,7 @@
     select 
         *
     from 
-        "hive"."lake"."hive_data"
+        "hive"."lake"."user"
 )
 
 SELECT * FROM source_data
