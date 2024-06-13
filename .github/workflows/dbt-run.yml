@@ -2,12 +2,12 @@ name: Run dbt script
 
 on:
   schedule:
-    - cron: '0 6 * * 1-5'
+    - cron: '0 6 * * 1-5' # Runs every weekday at 06:00 UTC
   push:
     branches:
       - main # Runs on every push to the main branch
   workflow_dispatch:
-    
+
 jobs:
   run-dbt:
     runs-on: ubuntu-latest
@@ -25,31 +25,34 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install python-dotenv
 
-          - name: Set environment variables
-          run: |
-            echo "DBT_DEV_HOST=${{ secrets.DBT_DEV_HOST }}" >> $GITHUB_ENV
-            echo "DBT_DEV_USER=${{ secrets.DBT_DEV_USER }}" >> $GITHUB_ENV
-            echo "DBT_DEV_PASS=${{ secrets.DBT_DEV_PASS }}" >> $GITHUB_ENV
-            echo "DBT_DEV_PORT=${{ secrets.DBT_DEV_PORT }}" >> $GITHUB_ENV
-            echo "DBT_DEV_DBNAME=${{ secrets.DBT_DEV_DBNAME }}" >> $GITHUB_ENV
-            echo "DBT_DEV_SCHEMA=${{ secrets.DBT_DEV_SCHEMA }}" >> $GITHUB_ENV
-            echo "DBT_LOCAL_HOST=${{ secrets.DBT_LOCAL_HOST }}" >> $GITHUB_ENV
-            echo "DBT_LOCAL_USER=${{ secrets.DBT_LOCAL_USER }}" >> $GITHUB_ENV
-            echo "DBT_LOCAL_PASS=${{ secrets.DBT_LOCAL_PASS }}" >> $GITHUB_ENV
-            echo "DBT_LOCAL_PORT=${{ secrets.DBT_LOCAL_PORT }}" >> $GITHUB_ENV
-            echo "DBT_LOCAL_DBNAME=${{ secrets.DBT_LOCAL_DBNAME }}" >> $GITHUB_ENV
-            echo "DBT_LOCAL_SCHEMA=${{ secrets.DBT_LOCAL_SCHEMA }}" >> $GITHUB_ENV
+      - name: Set environment variables
+        run: |
+          echo "DBT_DEV_HOST=${{ secrets.DBT_DEV_HOST }}" >> $GITHUB_ENV
+          echo "DBT_DEV_USER=${{ secrets.DBT_DEV_USER }}" >> $GITHUB_ENV
+          echo "DBT_DEV_PASS=${{ secrets.DBT_DEV_PASS }}" >> $GITHUB_ENV
+          echo "DBT_DEV_PORT=${{ secrets.DBT_DEV_PORT }}" >> $GITHUB_ENV
+          echo "DBT_DEV_DBNAME=${{ secrets.DBT_DEV_DBNAME }}" >> $GITHUB_ENV
+          echo "DBT_DEV_SCHEMA=${{ secrets.DBT_DEV_SCHEMA }}" >> $GITHUB_ENV
+          echo "DBT_LOCAL_HOST=${{ secrets.DBT_LOCAL_HOST }}" >> $GITHUB_ENV
+          echo "DBT_LOCAL_USER=${{ secrets.DBT_LOCAL_USER }}" >> $GITHUB_ENV
+          echo "DBT_LOCAL_PASS=${{ secrets.DBT_LOCAL_PASS }}" >> $GITHUB_ENV
+          echo "DBT_LOCAL_PORT=${{ secrets.DBT_LOCAL_PORT }}" >> $GITHUB_ENV
+          echo "DBT_LOCAL_DBNAME=${{ secrets.DBT_LOCAL_DBNAME }}" >> $GITHUB_ENV
+          echo "DBT_LOCAL_SCHEMA=${{ secrets.DBT_LOCAL_SCHEMA }}" >> $GITHUB_ENV
+
       - name: Create .dbt directory and add profiles.yml
         run: |
           mkdir -p ~/.dbt
           cp profiles.yml ~/.dbt/profiles.yml
+          
+      - name: Install dbt packages
+        run: dbt deps
+        
       - name: Run dbt script
         run: python utils/run_dbt.py
         working-directory: .
-  
+
       - name: Run dbt
         run: dbt run --project-dir . --profiles-dir ~/.dbt
         working-directory: .
-  
