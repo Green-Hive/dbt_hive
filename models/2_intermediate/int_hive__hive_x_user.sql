@@ -4,7 +4,7 @@ WITH source_data AS (
         u.email,
         u.name as user_name, 
         u.createdat as created_at,
-        u.updatedat as updated_at, 
+
         u.role,
         h.id as hive_id,
         h.name as hive_name,
