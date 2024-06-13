@@ -1,4 +1,14 @@
-WITH source_data AS (
+
+  
+    
+
+  create  table "hive"."atlas_intermediary"."int_hive__hive_x_user__dbt_tmp"
+  
+  
+    as
+  
+  (
+    WITH source_data AS (
     select 
         u.id as user_id, 
         u.email,
@@ -16,3 +26,5 @@ left join "hive"."atlas_staging"."stg_hive__hive" h on u.id =  h.userid
 )
 
 SELECT * FROM source_data
+  );
+  

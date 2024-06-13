@@ -1,6 +1,6 @@
 version: 2
 models:
-- name: user_hive_data
+- name: int_hive__hive_x_user
   description: This table maps data about user and hives
   columns:
   - name: user_id
@@ -15,6 +15,8 @@ models:
     description: last update date of the user
   - name: role
     description: role of the user
+  - name: hive_id
+    description: ID of the Hive
   - name: hive_name
     description: Name of the Hive
   - name: user_has_access
