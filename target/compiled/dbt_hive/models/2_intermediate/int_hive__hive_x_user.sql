@@ -6,10 +6,11 @@ WITH source_data AS (
         u.createdat as created_at,
         u.updatedat as updated_at, 
         u.role,
+        h.id as hive_id,
         h.name as hive_name,
         h.userhasaccess as user_has_access
-    from {{ ref('stg_hive__user') }} u
-left join {{ ref('stg_hive__hive') }} h on u.id =  h.userid
+    from "hive"."atlas_staging"."stg_hive__user" u
+left join "hive"."atlas_staging"."stg_hive__hive" h on u.id =  h.userid
 
 
 )
